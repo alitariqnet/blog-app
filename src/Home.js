@@ -1,21 +1,15 @@
+import BlogList from "./BlogList";
+import _blogs from './blogs';
 import { useState } from 'react';
 
+
 const Home = () => {
-    const [blogs, setBlogs] = useState([
-        {title:'new blog 1', body:'lorem ipsum...',author:'alibaba1',id:1},
-        {title:'new blog 2', body:'lorem ipsum...',author:'alibaba2',id:2},
-        {title:'new blog 3', body:'lorem ipsum...',author:'alibaba3',id:3}
-    ]);
+    const [blogs, setBlogs] = useState(_blogs);
 
     return ( <div className="home">
         <h2>Homepage</h2>
-        {blogs.map((blog) => { 
-            return (<div className="blog-preview" key={blogs.id}>
-                <h2>{blog.title}</h2>
-                <p>Author: {blog.author}</p>
-                <p>{blog.body}</p>
-            </div>)
-        })}
+        <BlogList blogs={blogs} title="All blogs!"/>
+        <BlogList blogs={blogs.filter((blog) => { return blog.id === 'alibaba' })} title="Ali's blogs!"/>
     </div> );
 }
  
